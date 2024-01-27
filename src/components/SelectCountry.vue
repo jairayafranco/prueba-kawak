@@ -19,9 +19,7 @@ getCountries().then((data) => {
 });
 
 const onChangeContry = (evt) => {
-    if (getHolidaysFromCalendar().length > 1) {
-        getHolidaysFromCalendar()[1].remove();
-    }
+    cleanCalendar();
 
     getHolidays(evt).then((data) => {
         const holidays = data.map(({ localName, date }) => ({
@@ -37,6 +35,10 @@ const cleanCalendar = () => {
     if (getHolidaysFromCalendar().length > 1) {
         getHolidaysFromCalendar()[1].remove();
     }
+}
+
+const clearAll = () => {
+    cleanCalendar();
     selected.value = null;
 }
 </script>
@@ -45,9 +47,9 @@ const cleanCalendar = () => {
     <div class="d-flex align-items-center mb-2">
         <b-form-select class="w-25" v-model="selected" :options="options" @change="onChangeContry">
             <template #first>
-                <b-form-select-option :value="null" disabled>Ver festivos de pais</b-form-select-option>
+                <b-form-select-option :value="null" disabled>Ver Festivos de Pais</b-form-select-option>
             </template>
         </b-form-select>
-        <b-button type="submit" class="ml-1" variant="info" @click="cleanCalendar">Limpiar</b-button>
+        <b-button type="submit" class="ml-1" variant="info" @click="clearAll">Limpiar</b-button>
     </div>
 </template>

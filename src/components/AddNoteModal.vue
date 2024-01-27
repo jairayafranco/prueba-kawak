@@ -5,7 +5,13 @@ import { validateForm } from '../utils/functions';
 const store = useStore();
 
 const onSubmit = (evt) => {
-    const event = validateForm(evt);
+    const { event, validate } = validateForm(evt);
+
+    if (validate) {
+        alert('Los campos Titulo y Hora son obligatorios');
+        return
+    }
+
     const newEvent = {
         ...event,
         id: crypto.randomUUID()
@@ -26,8 +32,8 @@ const onSubmit = (evt) => {
                     <b-form-input name="title" id="input" placeholder="Deberes..."></b-form-input>
                 </div>
 
-                <div>
-                    <label for="textarea">Descripcion</label>
+                <div class="mt-2">
+                    <label for="textarea">Descripcion (opcional)</label>
                     <b-form-textarea name="description" id="textarea" placeholder="Ir al super..." rows="3"
                         max-rows="6"></b-form-textarea>
                     <pre class="mt-3 mb-0"></pre>
