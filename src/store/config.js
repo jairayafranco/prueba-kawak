@@ -16,7 +16,8 @@ const store = createStore({
             selectedCellDate: null,
             fullCalendar: null,
             events: initialEvents,
-            eventSelected: null
+            eventSelected: null,
+            filteredEvents: initialEvents,
         }
     },
     mutations: {
@@ -38,6 +39,9 @@ const store = createStore({
         },
         updateEvent(state, event) {
             state.events = state.events.map((item) => (item.id === event.id ? event : item));
+        },
+        setFilteredEvents(state, events) {
+            state.filteredEvents = events;
         },
     }
 })

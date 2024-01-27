@@ -3,18 +3,26 @@ import store from '../store/config';
 import { ref } from 'vue';
 
 const eventsCopy = ref([...store.state.events])
+
+const filterEvents = (text) => {
+    const filteredEvents = eventsCopy.value.filter((event) => {
+        const fullText = `${event.title} ${event.description}`
+        return fullText.includes(text.toLowerCase())
+    })
+    store.commit('setFilteredEvents', filteredEvents)
+}
 </script>
 
 <template>
     <div class="m-2">
-        <b-form-input v-model="text" placeholder="Buscar nota..."></b-form-input>
+        <b-form-input @input="filterEvents" placeholder="Buscar nota..."></b-form-input>
     </div>
 
     <h2 v-if="store.state.events.length === 0" class="text-center">
         No hay eventos creados
     </h2>
 
-    <b-list-group v-else v-for="note in store.state.events">
+    <b-list-group v-else v-for="note in store.state.filteredEvents">
         <b-list-group-item class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">• {{ note.title }}</h4>
