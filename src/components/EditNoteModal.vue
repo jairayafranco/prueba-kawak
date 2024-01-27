@@ -1,12 +1,13 @@
 <script setup>
-import store from '../store/config';
 import { validateForm } from '../utils/functions';
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
-const values = ref({ ...store.state.eventSelected })
+const store = useStore();
+const values = ref({ ...store.state.eventSelected });
 
 const formattedDate = () => {
-    const [date, time] = store.state.eventSelected.start.split('T')
+    const [date, time] = store.state.eventSelected.start.split('T');
     return { date, time }
 }
 
@@ -16,10 +17,10 @@ const onSubmit = (evt) => {
         ...event,
         id: store.state.eventSelected.id,
     }
-    store.commit('updateEvent', newNote)
-    store.state.fullCalendar.getApi().getEventById(newNote.id).remove()
-    store.state.fullCalendar.getApi().addEvent(newNote)
-    store.commit('setEventSelected', null)
+    store.commit('updateEvent', newNote);
+    store.state.fullCalendar.getApi().getEventById(newNote.id).remove();
+    store.state.fullCalendar.getApi().addEvent(newNote);
+    store.commit('setEventSelected', null);
 }
 </script>
 

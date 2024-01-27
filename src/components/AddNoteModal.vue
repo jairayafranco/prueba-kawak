@@ -1,10 +1,12 @@
 <script setup>
-import store from '../store/config';
+import { useStore } from 'vuex';
 import { validateForm } from '../utils/functions';
 
+const store = useStore();
+
 const onSubmit = (evt) => {
-    const event = validateForm(evt)
-    store.commit('addEventToCalendar', event)
+    const event = validateForm(evt);
+    store.commit('addEventToCalendar', event);
     document.querySelector("#addModal").click();
 }
 </script>

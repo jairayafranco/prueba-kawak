@@ -1,15 +1,16 @@
 <script setup>
-import store from '../store/config';
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
-const eventsCopy = ref([...store.state.events])
+const store = useStore();
+const eventsCopy = ref([...store.state.events]);
 
 const filterEvents = (text) => {
     const filteredEvents = eventsCopy.value.filter((event) => {
-        const fullText = `${event.title} ${event.description}`
-        return fullText.includes(text.toLowerCase())
-    })
-    store.commit('setFilteredEvents', filteredEvents)
+        const fullText = `${event.title} ${event.description}`;
+        return fullText.includes(text.toLowerCase());
+    });
+    // store.commit('setFilteredEvents', filteredEvents)
 }
 </script>
 
@@ -22,7 +23,7 @@ const filterEvents = (text) => {
         No hay eventos creados
     </h2>
 
-    <b-list-group v-else v-for="note in store.state.filteredEvents">
+    <b-list-group v-else v-for="note in store.state.events">
         <b-list-group-item class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">• {{ note.title }}</h4>

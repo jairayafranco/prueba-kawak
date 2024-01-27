@@ -1,12 +1,14 @@
 <script setup>
-import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import FullCalendar from '@fullcalendar/vue3';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
 import { ref, onMounted } from 'vue';
-import store from '../store/config';
+import { useStore } from 'vuex';
 import EditNoteModal from '../components/EditNoteModal.vue';
 import AddNoteModal from '../components/AddNoteModal.vue';
+
+const store = useStore();
 
 const calendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
@@ -16,9 +18,9 @@ const calendarOptions = {
     events: store.state.events,
     eventClick: (info) => {
         if (info.event.allDay) {
-            return;
+            return
         }
-        store.commit('setEventSelected', info.event._def.publicId)
+        store.commit('setEventSelected', info.event._def.publicId);
     },
     dateClick: (info) => {
         store.commit('setSelectedCellDate', info.dateStr)
@@ -26,9 +28,9 @@ const calendarOptions = {
     },
 }
 
-const fullCalendar = ref(null)
+const fullCalendar = ref(null);
 onMounted(() => {
-    store.commit('setFullCalendar', fullCalendar)
+    store.commit('setFullCalendar', fullCalendar);
 }) 
 </script>
 
