@@ -25,7 +25,7 @@ const onSubmit = (evt) => {
     <div>
         <b-button id="open-modal" v-b-modal.addModal hidden>Launch modal</b-button>
 
-        <b-modal id="addModal" title="Agregar Nota" centered hide-footer>
+        <b-modal id="addModal" title="Agregar Nota" centered hide-footer no-close-on-backdrop no-close-on-esc>
             <b-form @submit="onSubmit">
                 <div>
                     <label for="input">Titulo</label>
