@@ -22,13 +22,6 @@ Vue Calendar App es una aplicación de calendario desarrollada con Vue.js que pe
 
 ## Instalación
 
-### Clonar el Repositorio
-
-```bash
-git clone https://github.com/jairayafranco/prueba-kawak.git
-cd vue-calendar-app
-```
-
 1. Clonar el repostiorio `git clone https://github.com/jairayafranco/prueba-kawak.git`
 
 2. Ingresar a la carpeta `cd prueba-kawak`

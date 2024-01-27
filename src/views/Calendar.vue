@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 import EditNoteModal from '../components/EditNoteModal.vue';
 import AddNoteModal from '../components/AddNoteModal.vue';
@@ -35,9 +35,7 @@ const calendarOptions = {
 }
 
 const fullCalendar = ref(null);
-onMounted(() => {
-    store.commit('setFullCalendar', fullCalendar);
-}) 
+store.commit('setFullCalendar', fullCalendar);
 </script>
 
 <template>

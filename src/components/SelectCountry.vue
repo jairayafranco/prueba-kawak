@@ -4,8 +4,8 @@ import { getCountries, getHolidays } from '../services/api';
 import { useStore } from 'vuex';
 
 const selected = ref(null);
-const options = ref([]);
 const store = useStore();
+const options = ref([]);
 const calendar = () => store.state.fullCalendar.getApi();
 const getHolidaysFromCalendar = () => calendar().getEventSources();
 
@@ -18,7 +18,7 @@ getCountries().then((data) => {
     });
 });
 
-const onChangeContry = (evt) => {
+const onChangeCountry = (evt) => {
     cleanCalendar();
 
     getHolidays(evt).then((data) => {
@@ -45,7 +45,7 @@ const clearAll = () => {
 
 <template>
     <div class="d-flex align-items-center mb-2">
-        <b-form-select class="w-25" v-model="selected" :options="options" @change="onChangeContry">
+        <b-form-select class="w-25" v-model="selected" :options="options" @change="onChangeCountry">
             <template #first>
                 <b-form-select-option :value="null" disabled>Ver Festivos de Pais</b-form-select-option>
             </template>

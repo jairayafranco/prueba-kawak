@@ -26,6 +26,10 @@ const filterEvents = (text) => {
         No hay eventos creados
     </h2>
 
+    <h2 v-else-if="store.state.filteredEvents.length === 0" class="text-center">
+        No hay coincidencias
+    </h2>
+
     <b-list-group v-else v-for="note in store.state.filteredEvents">
         <b-list-group-item class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
