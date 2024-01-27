@@ -15,6 +15,11 @@ const calendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
     locale: esLocale,
+    eventTimeFormat: {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+    },
     dayMaxEventRows: true,
     events: store.state.events,
     eventClick: (info) => {
