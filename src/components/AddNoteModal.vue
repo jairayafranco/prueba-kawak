@@ -6,7 +6,11 @@ const store = useStore();
 
 const onSubmit = (evt) => {
     const event = validateForm(evt);
-    store.commit('addEventToCalendar', event);
+    const newEvent = {
+        ...event,
+        id: crypto.randomUUID()
+    }
+    store.commit('addEventToCalendar', newEvent);
     document.querySelector("#addModal").click();
 }
 </script>

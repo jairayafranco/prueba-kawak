@@ -12,6 +12,5 @@ export const validateForm = (evt) => {
     return {
         ...rest,
         start: `${date}T${time}`,
-        id: crypto.randomUUID()
     }
 }

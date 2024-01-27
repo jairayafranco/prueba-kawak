@@ -1,4 +1,4 @@
-import { createStore } from 'vuex';M
+import { createStore } from 'vuex';
 
 const initialEvents = [
     { title: 'ir al super', description: "ir al supermercado a comprar 2 barras de pan", start: '2024-01-24T10:30:00' },
@@ -17,7 +17,7 @@ const store = createStore({
             fullCalendar: null,
             events: initialEvents,
             eventSelected: null,
-            // filteredEvents: initialEvents,
+            filteredEvents: [],
         }
     },
     mutations: {
@@ -31,8 +31,10 @@ const store = createStore({
             state.fullCalendar.getApi().addEvent(event);
             state.events = [...state.events, event];
         },
-        removeEventFromCalendar(state, event) {
-            state.events = state.events.filter((note) => note.id !== event);
+        removeEventFromCalendar(state, eventId) {
+            const newEvents = state.events.filter((note) => note.id !== eventId);
+            state.events = newEvents;
+            state.filteredEvents = newEvents;
         },
         setEventSelected(state, id) {
             state.eventSelected = state.events.find((event) => event.id === id);
@@ -40,9 +42,9 @@ const store = createStore({
         updateEvent(state, event) {
             state.events = state.events.map((item) => (item.id === event.id ? event : item));
         },
-        // setFilteredEvents(state, events) {
-        //     state.filteredEvents = events;
-        // },
+        setFilteredEvents(state, events) {
+            state.filteredEvents = events;
+        },
     }
 })
 
