@@ -3,6 +3,7 @@ import { validateForm } from '../utils/functions';
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 
+const calendar = () => store.state.fullCalendar.getApi();
 const store = useStore();
 const values = ref({ ...store.state.eventSelected });
 
@@ -18,8 +19,8 @@ const onSubmit = (evt) => {
         id: store.state.eventSelected.id,
     }
     store.commit('updateEvent', newNote);
-    store.state.fullCalendar.getApi().getEventById(newNote.id).remove();
-    store.state.fullCalendar.getApi().addEvent(newNote);
+    calendar().getEventById(newNote.id).remove();
+    calendar().addEvent(newNote);
     store.commit('setEventSelected', null);
 }
 </script>

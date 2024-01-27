@@ -8,8 +8,6 @@ const initialEvents = [
     { title: 'caminar al parque', description: "", start: '2024-01-13T10:15:00' },
 ].map((event) => ({ ...event, id: crypto.randomUUID() }));
 
-// { title: 'dia festivo', date: '2024-01-24', backgroundColor: 'green' }, // formato para dia festivo
-
 const store = createStore({
     state() {
         return {

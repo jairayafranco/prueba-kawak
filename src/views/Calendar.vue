@@ -7,6 +7,7 @@ import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import EditNoteModal from '../components/EditNoteModal.vue';
 import AddNoteModal from '../components/AddNoteModal.vue';
+import SelectCountry from '../components/SelectCountry.vue';
 
 const store = useStore();
 
@@ -35,6 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
+    <SelectCountry />
     <FullCalendar ref="fullCalendar" :options="calendarOptions" />
     <AddNoteModal />
     <EditNoteModal v-if="store.state.eventSelected" />
